@@ -3,6 +3,7 @@ package com.sist.view;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,21 +55,38 @@ import com.sist.dao.*;
 @WebServlet("/FoodListServlet")
 public class FoodListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	   //1. 전송방식 (HTML,XML) => 브라우저에 통보 
 	   response.setContentType("text/html;charset=UTF-8");
 	   //2. 브라우저에서 읽어갈 메모리 위치를 확보 
 	   PrintWriter out=response.getWriter();
+	   
 	   //3. 사용자의 요청값을 받는다 
 	   String page=request.getParameter("page");
 	   if(page==null)
 		   page="1"; // default
 	   int curpage=Integer.parseInt(page);
+	   
 	   //4. 데이터베이스 연동 => 요청한 데이터를 가지고 온다 
 	   FoodDAO dao=FoodDAO.newInstance();
 	   List<FoodVO> list=dao.foodListData(curpage);
 	   int totalpage=dao.foodTotalPage();
+	   // 쿠키 읽기 
+	   List<FoodVO> cList=new ArrayList<FoodVO>();
+	   Cookie[] cookies=request.getCookies();
+	   if(cookies!=null)
+	   {
+		   for(int i=cookies.length-1;i>=0;i--)
+		   {
+			   if(cookies[i].getName().startsWith("food"))
+			   {
+				   String fno=cookies[i].getValue();
+				   FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
+				   cList.add(vo);
+			   }
+		   }
+	   }
 	   // 블록 나누기 
 	   final int BLOCK=10;
 	   int startPage=((curpage-1)/BLOCK*BLOCK)+1;
@@ -97,7 +115,7 @@ public class FoodListServlet extends HttpServlet {
 	   {
 		   out.write("<div class=\"col-md-3\">");
 		   out.write("<div class=\"thumbnail\">");
-		   out.write("<a href=FoodDetailServlet?fno="+vo.getFno()+">");
+		   out.write("<a href=FoodBeforeServlet?fno="+vo.getFno()+">");
 		   out.write("<img src="+vo.getPoster()+" alt=\"Lights\" style=\"width:100%\">");
 		   out.write("<div class=\"caption\">");
 		   out.write("<p>"+vo.getName()+"</p>");
@@ -127,6 +145,19 @@ public class FoodListServlet extends HttpServlet {
 	   out.write("</div>");
 	   out.write("</div>");
 	   out.write("<div class=row>"); // 최근방문
+	   if(cList.size()!=0)
+	   {
+		   for(FoodVO vo:cList)
+		   {
+			   out.write("<a href=FoodDetailServlet?fno="+vo.getFno()+">");
+			   out.write("<img src="+vo.getPoster()+" style=\"width:100px;height:100px;margin:10px 0 0 5px;\">");
+		       out.write("</a>");
+		   }
+	   }
+	   else
+	   {
+		   out.write("<h3>방문한 기록이 없습니다</h3>");
+	   }
 	   out.write("</div>");
 	   out.write("</div>");
 	   out.write("</body>");
