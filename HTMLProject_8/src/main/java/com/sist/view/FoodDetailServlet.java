@@ -29,6 +29,7 @@ public class FoodDetailServlet extends HttpServlet {
 		   out.write("<html>");
 		   out.write("<head>"); // CSS / JavaScript => 없는 경우에는 생략이 가능
 		   out.write("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\">");
+		   
 		   out.write("<style type=text/css>");
 		   out.write(".container{margin-top:50px}");
 		   // margin:10px 10px 10px 10px 
