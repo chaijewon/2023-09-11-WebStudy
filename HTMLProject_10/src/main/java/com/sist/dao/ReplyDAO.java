@@ -104,7 +104,26 @@ public class ReplyDAO {
 		   }
 	   }
 	   // 3. 수정 => Jquery
-	   // 4. 삭제
+	   // 4. 삭제 
+	   public void replyDelete(int rno)
+	   {
+		   try
+		   {
+			   getConnection();
+			   String sql="DELETE FROM reply "
+					     +"WHERE rno="+rno;
+			   ps=conn.prepareStatement(sql);
+			   ps.executeUpdate();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+	   }
+	   
 	   
 }
 
