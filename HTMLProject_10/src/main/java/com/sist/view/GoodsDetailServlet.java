@@ -1,11 +1,15 @@
 package com.sist.view;
 
 import java.io.*;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sist.dao.*;
 @WebServlet("/GoodsDetailServlet")
 public class GoodsDetailServlet extends HttpServlet {
@@ -93,13 +97,104 @@ public class GoodsDetailServlet extends HttpServlet {
 				+ "			  </tr>"
 				+ "		  </table>"
 				+ "	  </div>";
+		
 		out.write(html);
+		
+		out.write("<div style=\"height:30px\"></div>");
+		out.write("<div class=row>");
+		// 댓글 출력
+		out.write("<table class=table>");
+		out.write("<tr>");
+		out.write("<td>");
+		ReplyDAO rdao=ReplyDAO.newInstance();
+		List<ReplyVO> list=rdao.replyListData(Integer.parseInt(type),Integer.parseInt(no));
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		for(ReplyVO rvo:list)
+		{
+			out.write("<table class=table>");
+			out.write("<tr>");
+			out.write("<td class=text-left>");
+			out.write("◑"+rvo.getName()+"&nbsp;("+rvo.getDbday()+")");
+			out.write("</td>");
+			out.write("<td class=text-right>");
+			if(rvo.getId().equals(id))
+			{
+				out.write("<a href=# class=\"btn btn-xs btn-success\">수정</a>&nbps;");
+				out.write("<a href=ReplyDeleteServlet?rno="+rvo.getRno()+"&type="+type+"&no="+no+" class=\"btn btn-xs btn-info\">삭제</a>");
+			}
+			out.write("</td>");
+			out.write("</tr>");
+			
+			out.write("<tr>");
+			out.write("<td colspan=2>");
+			out.write("<pre style=\"white-space:pre-wrap;backgorund-color:white;border:none\">"+rvo.getMsg()+"</pre>");
+			out.write("</td>");
+			out.write("</tr>");
+			out.write("</table>");
+		}
+		out.write("</td>");
+		out.write("</tr>");
+		out.write("</table>");
+		
+		// 댓글 작성
+		if(id!=null)//로그인이 되었다면 
+		{
+			out.write("<form method=post action=GoodsDetailServlet>");
+			out.write("<input type=hidden name=gno value="+no+">");
+			out.write("<input type=hidden name=typeno value="+type+">");
+			out.write("<textarea name=msg rows=4 cols=60 style=\"float:left\"></textarea>");
+			out.write("<input type=submit value=\"댓글 쓰기\" style=\"width:100px;height:89px;background:blue;color:white\">");
+			out.write("</form>");
+		}
+		out.write("</div>");
 		out.write("</body>");
 		out.write("</html>");
 		// => head , style , script => 닫기를 하지 않는 경우에는 흰색화면이다 
-		
-		
-		
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//1. 한글변환 
+		try
+		{
+			req.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		String gno=req.getParameter("gno");
+		String typeno=req.getParameter("typeno");
+		String msg=req.getParameter("msg");
+		
+		HttpSession session=req.getSession();
+		String id=(String)session.getAttribute("id");
+		String name=(String)session.getAttribute("name");
+		
+		ReplyVO vo=new ReplyVO();
+		vo.setId(id);
+		vo.setName(name);
+		vo.setMsg(msg);
+		vo.setGno(Integer.parseInt(gno));
+		vo.setTypeno(Integer.parseInt(typeno));
+		
+		// DAO연동 
+		ReplyDAO dao=ReplyDAO.newInstance();
+		dao.replyInsert(vo);
+		
+		// 이동 (화면 이동)
+		resp.sendRedirect("MainServlet?mode=5&no="+gno+"&type="+typeno);
+	    /*
+	     *  request	: 클라이언트에 대한 정보 
+	     *            ip / port ...
+	     *            사용자 전송 정보 => 전송한 모든 정보는 request
+	     *  response : 응답 정보 / 헤더정보 
+	     *             =======
+	     *             | HTML => setContentType
+	     *               화면 이동 정보 => sendRedirect()
+	     *  => JSP 동일 
+	     *     내장 객체 => request,response , session
+	     *     => Spring에서 JSP는 동일 
+	     *  
+	     */
+	}
+	
 
 }
