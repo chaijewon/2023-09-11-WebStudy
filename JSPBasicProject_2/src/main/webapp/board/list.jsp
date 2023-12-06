@@ -82,7 +82,21 @@ a:hover {
 		          <%
 		             }
 		          %>
+		          <%
+		              String msg="관리자가 삭제한 게시물입니다";
+		              if(!msg.equals(vo.getSubject()))
+		              {
+		          %>
 		          <a href="detail.jsp?no=<%=vo.getNo()%>&page=<%=curpage%>"><%=vo.getSubject() %></a>&nbsp;
+		          <%
+		              }
+		              else
+		              {
+		          %>
+		              <span style="color:#333"><%=vo.getSubject() %></span>
+		          <%
+		              }
+		          %>
 		          <%-- 
 		            데이터는 항상 앞에 있는 파일이 받는다
 		            no에 해당하는 게시물을 출력요청 
