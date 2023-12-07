@@ -50,7 +50,7 @@ a:hover {
              <tr>
 		       <th width=20%>첨부파일</th>
 		       <td colspan=3>
-		        <%=vo.getFilename() %>
+		        <a href="download.jsp?fn=<%=vo.getFilename()%>"><%=vo.getFilename() %></a>
 		        &nbsp;(<%=vo.getFilesize() %>Bytes)
 		       </td>
 		     </tr> 
@@ -60,7 +60,12 @@ a:hover {
      <tr>
        <td colspan="4" class="text-left" valign="top" height="200"><pre style="white-space: pre-wrap;"><%=vo.getContent() %></pre></td>
      </tr>
-     
+     <tr>
+        <td colspan="4" class="text-right">
+         <a href="#">삭제</a>&nbsp;
+         <a href="list.jsp">목록</a>
+        </td>
+     </tr>
     </table>
    </center>
 </body>
