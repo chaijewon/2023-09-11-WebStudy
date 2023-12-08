@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.net.*"%>
 <%
+    //request.setCharacterEncoding("UTF-8");
+    //=> POST 
+    String fd=request.getParameter("fd");
+    String ss=request.getParameter("ss");
     String fno=request.getParameter("fno");
     //1. Cookie생성 
     Cookie cookie=new Cookie("food_"+fno,fno);
@@ -12,6 +16,6 @@
     response.addCookie(cookie);
     
     //5. 상세보기로 이동 
-    response.sendRedirect("detail.jsp?fno="+fno);
+    response.sendRedirect("detail.jsp?fno="+fno+"&fd="+fd+"&ss="+URLEncoder.encode(ss,"UTF-8"));
     // sendRedirect는 GET방식 => 요청값 전송시 반드시 ?
 %>

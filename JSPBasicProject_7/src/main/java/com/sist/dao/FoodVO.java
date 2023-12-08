@@ -17,8 +17,15 @@ package com.sist.dao;
  */
 public class FoodVO {
     private int fno;
-    private String poster,name,type,address,phone,theme,price,time,seat;
+    private String poster,name,type,address,phone,theme,price,time,seat,content;
     private double score;
+	
+    public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getFno() {
 		return fno;
 	}

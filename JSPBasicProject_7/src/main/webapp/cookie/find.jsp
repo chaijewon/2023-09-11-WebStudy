@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*"%>
+    pageEncoding="UTF-8" import="java.net.*,java.util.*,com.sist.dao.*"%>
 <jsp:useBean id="dao" class="com.sist.dao.FoodDAO"/>
 <%--
      쿠키 => 상태의 지속
@@ -61,6 +61,22 @@
      }
      int totalpage=dao.foodTotalPage(fd, ss);
      
+     // 쿠키 읽기
+     Cookie[] cookies=request.getCookies();
+     List<FoodVO> cList=new ArrayList<FoodVO>();
+     if(cookies!=null)
+     {
+    	 for(int i=cookies.length-1;i>=0;i--)
+    	 {
+    		 // food_
+    		 if(cookies[i].getName().startsWith("food_"))
+    		 {
+    			 String fno=cookies[i].getValue();
+    			 FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
+    			 cList.add(vo);
+    		 }
+    	 }
+     }
 %>
 <!DOCTYPE html>
 <html>
@@ -100,7 +116,7 @@
     %>
          <div class="col-md-3">
            <div class="thumbnail">
-            <a href="detail_before.jsp?fno=<%=vo.getFno()%>">
+            <a href="detail_before.jsp?fd=<%=fd%>&ss=<%=URLEncoder.encode(ss,"UTF-8")%>&fno=<%=vo.getFno()%>">
             <img src="https://www.menupan.com<%=vo.getPoster() %>" title="<%=vo.getAddress() %>" style="width:100%">
             <div class="caption">
             <p><%=vo.getName() %></p>
@@ -123,8 +139,27 @@
    <div style="height: 20px"></div>
    <div class="row">
    <h3>최신 방문 맛집</h3>
-   <hr>
+   <a href="cookie_all_delete.jsp" class="btn btn-sm btn-primary">전체삭제</a>
    
+   <hr>
+   <form method=post action="cookie_delete.jsp">
+   <%
+     int i=0;
+     for(FoodVO vo:cList)
+     {
+    	if(i>8) break;
+   %>
+       
+        <input type="checkbox" name="del" value="<%=vo.getFno()%>">
+        <img src="https://www.menupan.com<%=vo.getPoster() %>" style="width:100px;height: 100px">
+      
+   <%
+        i++;
+     }
+   %>
+   <p>
+   <button class="btn btn-sm btn-danger">삭제</button>
+   </form>
    </div>
   </div>
 </body>
