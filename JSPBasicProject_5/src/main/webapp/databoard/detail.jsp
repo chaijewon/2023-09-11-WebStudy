@@ -62,7 +62,7 @@ a:hover {
      </tr>
      <tr>
         <td colspan="4" class="text-right">
-         <a href="#">삭제</a>&nbsp;
+         <a href="delete.jsp?no=<%=vo.getNo()%>">삭제</a>&nbsp;
          <a href="list.jsp">목록</a>
         </td>
      </tr>
