@@ -1,5 +1,7 @@
+<%@page import="java.util.StringTokenizer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.sist.model.*"%>
+<%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="model" class="com.sist.model.FoodModel"></jsp:useBean>
 <%
     model.foodDetailData(request);
@@ -27,44 +29,48 @@
     <div class="col-sm-7"><%-- float:left --%>
       <table class="table">
        <tr>
-        <td width=30% class="text-center" rowspan="9">
-          <img src="https://www.menupan.com${vo.poster }" style="width:100%">
+        <td width=30% class="text-center" rowspan="7">
+          <img src="https://www.menupan.com${vo.poster }" style="width:300px;height: 450px">
         </td>
         <td colspan="2">
           <h3>${vo.name }&nbsp;<span style="color:orange">${vo.score }</span></h3>
          </td>
        </tr>
        <tr>
-         <td width=15%>주소</td>
+         <td width=15% class="danger">주소</td>
          <td width=55%>${vo.address }</td>
        </tr>
        <tr>
-         <td width=15%>전화</td>
+         <td width=15% class="danger">전화</td>
          <td width=55%>${vo.phone }</td>
        </tr>
        <tr>
-         <td width=15%>음식종류</td>
+         <td width=15% class="danger">음식종류</td>
          <td width=55%>${vo.type }</td>
        </tr>
        <tr>
-         <td width=15%>가격대</td>
+         <td width=15% class="danger">가격대</td>
          <td width=55%>${vo.price }</td>
        </tr>
        <tr>
-         <td width=15%>좌석</td>
+         <td width=15% class="danger">좌석</td>
          <td width=55%>${vo.seat }</td>
        </tr>
        <tr>
-         <td width=15%>영업시간</td>
+         <td width=15% class="danger">시간</td>
          <td width=55%>${vo.time }</td>
        </tr>
        <tr>
-         <td width=15%>테마</td>
-         <td width=55%>${vo.theme }</td>
+         <td colspan=3>
+          <ul>
+            <c:forTokens items="${vo.theme }" delims="," var="d">
+             <li>${d }</li>
+            </c:forTokens>
+          </ul>
+         </td>
        </tr>
        <tr>
-         <td width=15%>소개</td>
-         <td width=55%>${vo.content }</td>
+         <td colspan="3"><pre style="white-space: pre-wrap">${vo.content }</pre></td>
        </tr>
        <tr>
          <td colspan="3" class="text-right">
@@ -83,7 +89,7 @@
 </p>
 <div id="map" style="width:100%;height:350px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e421950ce6e70bb7c508166e4a0ce04&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=684b5f2fbc7d26b1c85e9437b6c9b1d4&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
