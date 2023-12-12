@@ -14,6 +14,14 @@ package com.sist.vo;
 public class GoodsVO {
     private int no,goods_discount,hit;
     private String goods_name,goods_price,goods_first_price,goods_delivery,goods_poster;
+	private String goods_sub;
+	
+    public String getGoods_sub() {
+		return goods_sub;
+	}
+	public void setGoods_sub(String goods_sub) {
+		this.goods_sub = goods_sub;
+	}
 	public int getNo() {
 		return no;
 	}
