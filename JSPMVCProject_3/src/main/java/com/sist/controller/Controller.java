@@ -19,7 +19,7 @@ public class Controller extends HttpServlet {
     private Map clsMap=new HashMap();
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		String path="C:\\webDev\\webStudy\\JSPMVCProject_3\\src\\main\\webapp\\WEB-INF\\application.xml";
+		String path="C:\\Users\\SIST\\git\\web-study\\JSPMVCProject_3\\src\\main\\webapp\\WEB-INF\\application.xml";
 		try
 		{
 			DocumentBuilderFactory dbf=
