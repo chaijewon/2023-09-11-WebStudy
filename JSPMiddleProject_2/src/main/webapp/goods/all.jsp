@@ -4,6 +4,7 @@
 <jsp:useBean id="model" class="com.sist.model.GoodsModel"/>
 <%
     // Controller 
+    // if(request.getMethod().equals("GET"))
     model.goodsListData(request);
     // request를 보내주고 출력에 필요한 데이터를 받아온다 
     // ${name} , #{id} => MyBatis
