@@ -138,19 +138,42 @@ public class DispatcherServlet extends HttpServlet {
 		uri=uri.substring(request.getContextPath().length()+1);
 		try
 		{
+			// RequestMapping
 			for(String cls:clsList)
 			{
 				Class clsName=Class.forName(cls);
+				// 클래스 정보 읽기 
+				/*
+				 *   메소드 / 멤버변수 / 생성자 
+				 */
 				Object obj=clsName.
 						getDeclaredConstructor().newInstance();
-				
+				// 클래스 정보를 이용해서 메모리 할당 
+				// => 리플렉션 
 				Method[] methods=clsName.getDeclaredMethods();
+				//               클래스에 선언된 모든 메소드를 가지고 온다 
 				for(Method m:methods)
 				{
 					RequestMapping rm=m.getAnnotation(RequestMapping.class);
+					// 메소드 위에 선언된 @RequestMapping을 가지고 온다 
+					// => m(메소드) => 위에 저장되어 있는 어노테이션을 가지고 온다 
+					// 저장된 객체 
+					/*
+					 *   A a=new A() => a
+					 *   A a=a.getClass()
+					 *   A a=A.class
+					 *   
+					 *   public void aaa(int a,int b)
+					 *   
+					 *   aaa(10)
+					 */
 					if(rm.value().equals(uri))
 					{
+						// 
+						
 						String jsp=(String)m.invoke(obj, request,response);
+						// 파일업로드 / 쿠키 
+						//  m이란 메소드 호출한다 => invoke(객체,매개변수....)
 						if(jsp==null) // void => ajax
 						{
 							return;
