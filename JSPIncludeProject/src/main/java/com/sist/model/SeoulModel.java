@@ -43,6 +43,7 @@ public class SeoulModel {
 		  int curpage=Integer.parseInt(page);
 		  //2. DB연동 
 		  SeoulDAO dao=new SeoulDAO();
+		  System.out.println("seoul-dao="+dao);
 		  List<SeoulVO> list=dao.seoulLocationListData(curpage,"seoul_nature");
 		  int totalpage=dao.seoulLocationTotalPage("seoul_nature");
 		  

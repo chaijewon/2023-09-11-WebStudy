@@ -14,7 +14,7 @@
        <div class="col-md-4">
 	    <div class="thumbnail">
 	      <a href="#">
-	        <img src="${vo.poster }" style="width:310px;height: 200px">
+	        <img src="${vo.poster }" style="width:310px;height: 200px" onerror="this.src=../seoul/err.jpg">
 	        <div class="caption">
 	          <p>${vo.title }</p>
 	        </div>
