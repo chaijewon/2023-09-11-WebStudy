@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,6 +32,8 @@ public class StoreModel {
 	  request.setAttribute("curpage", curpage);
 	  request.setAttribute("totalpage", totalpage);
 	  request.setAttribute("list", list);
+	  // => 쿠키 데이터를 전송 
+	  
 	  // 요청 => .do
 	  // include => .jsp
 	  request.setAttribute("store_jsp", "../store/all.jsp");
@@ -64,6 +67,37 @@ public class StoreModel {
   {
 	  
 	  request.setAttribute("store_jsp", "../store/new.jsp");
+	  request.setAttribute("main_jsp", "../store/store_main.jsp");
+	  return "../main/main.jsp";
+  }
+  @RequestMapping("store/detail_before.do")
+  public String store_detail_before(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String no=request.getParameter("no");
+	  Cookie cookie=new Cookie("goods_"+no, no);
+	  cookie.setPath("/");
+	  cookie.setMaxAge(60*60*24);
+	  // 브라우저로 전송 
+	  response.addCookie(cookie);
+	  return "redirect:../store/detail.do?no="+no;
+  }
+  @RequestMapping("store/detail.do")
+  public String store_detail(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  // 사용자 => no
+	  String no=request.getParameter("no");
+	  GoodsDAO dao=GoodsDAO.newInstance();
+	  GoodsVO vo=dao.goodsAllDetailData(Integer.parseInt(no));
+	  String price=vo.getGoods_price();
+	  // 30,000원 => 30000
+	  price=price.replaceAll("[^0-9]", "");
+	  vo.setPrice(price);
+	  request.setAttribute("vo", vo);
+	  // [^가-힣] [^A-Za-z]
+	  // ${store_jsp} => request.getAttribute("store_jsp")
+	  request.setAttribute("store_jsp", "../store/detail.jsp");
 	  request.setAttribute("main_jsp", "../store/store_main.jsp");
 	  return "../main/main.jsp";
   }

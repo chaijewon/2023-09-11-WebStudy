@@ -110,7 +110,43 @@ public class GoodsDAO {
 	   return total;
    }
    // 전체 상품 상세 => 결제창 출력
-   
+   public GoodsVO goodsAllDetailData(int no)
+   {
+	   GoodsVO vo=new GoodsVO();
+	   try
+	   {
+		   conn=dbconn.getConnection();
+		   String sql="UPDATE goods_all SET "
+				     +"hit=hit+1 "
+		             +"WHERE no="+no;
+		   ps=conn.prepareStatement(sql);
+		   ps.executeUpdate();
+		   
+		   sql="SELECT * FROM goods_all "
+				     +"WHERE no="+no;
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  vo.setNo(rs.getInt(1));
+		  vo.setGoods_name(rs.getString(2));
+		  vo.setGoods_sub(rs.getString(3));
+		  vo.setGoods_price(rs.getString(4));
+		  vo.setGoods_discount(rs.getInt(5));
+		  vo.setGoods_first_price(rs.getString(6));
+		  vo.setGoods_delivery(rs.getString(7));
+		  vo.setGoods_poster(rs.getString(8));
+		  rs.close();
+		   
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   dbconn.disConnection(conn, ps);
+	   }
+	   return vo;
+   }
    
 }
 

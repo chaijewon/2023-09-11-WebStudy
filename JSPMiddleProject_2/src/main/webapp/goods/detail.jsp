@@ -32,7 +32,7 @@
 			  <tr>
 				  <td width="65%">
 					  <span id="percent">${vo.goods_discount }%</span>&nbsp;
-					  <span id="price">${vo.goods_price }</span>
+					  <span id="price" data-price="${vo.price }">${vo.goods_price }</span>
 					  <p>
 						  <del id="psub">17,900원</del>
 					  </p>
