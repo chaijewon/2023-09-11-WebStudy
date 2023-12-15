@@ -33,7 +33,23 @@ public class StoreModel {
 	  request.setAttribute("totalpage", totalpage);
 	  request.setAttribute("list", list);
 	  // => 쿠키 데이터를 전송 
-	  
+	  Cookie[] cookies=request.getCookies();
+	  List<GoodsVO> cList=new ArrayList<GoodsVO>();
+	  if(cookies!=null)
+	  {
+		  for(int i=cookies.length-1;i>=0;i--)
+		  {
+			  if(cookies[i].getName().startsWith("goods_"))
+			  {
+				  String no=cookies[i].getValue();
+				  GoodsVO vo=dao.goodsCookieData(Integer.parseInt(no));
+				  cList.add(vo);
+			  }
+		  }
+		  
+	  }
+	  request.setAttribute("cList", cList);
+	  request.setAttribute("count", cList.size());
 	  // 요청 => .do
 	  // include => .jsp
 	  request.setAttribute("store_jsp", "../store/all.jsp");

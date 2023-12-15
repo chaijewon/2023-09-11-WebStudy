@@ -31,5 +31,16 @@
      <a href="../store/all.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
     </div>
   </div>
+  <div style="height: 20px"></div>
+  <h3>최근 방문 상품</h3>
+  <hr>
+  <c:if test="${count==0 }">
+    방문기록이 없습니다.
+  </c:if>
+  <c:if test="${count!=0 }">
+   <c:forEach var="vo" items="${cList }">
+    <img src="${vo.goods_poster }" style="width: 100px;height: 100px;margin-left: 10px">
+   </c:forEach>
+  </c:if>
 </body>
 </html>
