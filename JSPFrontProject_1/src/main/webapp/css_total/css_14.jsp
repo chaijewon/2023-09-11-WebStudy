@@ -1,5 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%--
+     1. 선택자 => Javascript
+     2. 글자 관련 
+     3. margin / padding / border
+     4. background 
+     5. position 
+         => fixed 
+         => relative
+         => 배치 => top/bottom/left/right
+     6. overflow 
+     ===================================
+     CSS는 약간의 수정 
+     => 퍼블러셔 
+     
+     HTML / CSS  => 화면 UI ******
+     JavaScript  => UI 제어 
+     Java => 데이터 관리 
+             오라클 ==> 자바 ==> HTML/JavaScript 
+     오라클 => 데이터 저장 장소
+     ============== 통합 (Spring) 
+     Spring-Boot <==> Front 
+     =========== MSA
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
