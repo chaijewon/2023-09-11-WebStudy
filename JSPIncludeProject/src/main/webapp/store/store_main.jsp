@@ -6,6 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(window).scroll(function(){  //스크롤이 움직일때마다 이벤트 발생
+	      var position = $(window).scrollTop()+200; // 현재 스크롤바의 위치값을 반환
+	      $(".panel").stop().animate({top:position+"px"}, 400); //해당 오브젝트 위치값 재설정
+	   });
+
+});
+</script>
 </head>
 <body>
   <div class="container">
