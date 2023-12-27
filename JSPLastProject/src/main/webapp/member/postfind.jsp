@@ -14,6 +14,9 @@
   margin: 0px auto;
   width: 450px;
 }
+.dataTr:hover{
+  cursor: pointer;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -57,14 +60,15 @@ $(function(){
 					    +'</tr>'
 					for(let vo of res)
 					{
-						html+='<tr>'
+						html+='<tr onclick="ok(\''+vo.zipcode+'\',\''+vo.address+'\')" class="dataTr">'
 						    +'<td class="text-center" width="20%">'+vo.zipcode+'</td>'
 						    +'<td width="80%">'+vo.address+'</td>'
 						    +'</tr>'
 						    
 					}
-					    
+					 
 					html+='</table>'
+					console.log(html)
 				}
 				$('#print').html(html);
 				
@@ -72,6 +76,13 @@ $(function(){
 		})
 	})
 })
+function ok(zip,addr)
+{
+	parent.frm.post1.value=zip.substring(0,3);
+	parent.frm.post2.value=zip.substring(4,7);
+	parent.frm.addr1.value=addr;
+	parent.Shadowbox.close()
+}
 </script>
 </head>
 <body>
