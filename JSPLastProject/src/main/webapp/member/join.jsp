@@ -32,6 +32,16 @@ $(function(){
 			height:200
 		})
 	});
+	
+	$('#postBtn').click(function(){
+		Shadowbox.open({
+			content:'../member/postfind.do',
+			player:'iframe',
+			title:'우편번호 검색',
+			width:490,
+			height:350
+		})
+	})
 })
 </script>
 </head>
@@ -40,7 +50,7 @@ $(function(){
   <main class="container clear">
    <h2 class="sectiontitle">회원 가입</h2>
    <div class="row row1">
-   <form method="post" action="../member/join_ok.do">
+   <form method="post" action="../member/join_ok.do" name="frm">
     <table class="table">
      <tr>
       <th class="text-right" width="15%">ID</th>

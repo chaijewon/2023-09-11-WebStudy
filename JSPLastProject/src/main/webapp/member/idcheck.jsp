@@ -18,7 +18,41 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('#idcheckBtn').click(function(){
+		/*let id=$('#id').val();
+		if(id.trim()==="")
+		{
+			$('#id').focus();
+			return;
+		}*/
+		// 서버로 전송 
+		$.ajax({
+			type:'post',
+			url:'../member/idcheck_ok.do',
+			data:{"id":id},
+			success:function(result)
+			{
+				//alert(result)
+				let count=parseInt(result);
+				if(count===0)
+				{
+					$('#result').html('<font color="blue">'+id+'는(은) 사용 가능한 ID입니다</font>')
+					$('#okBtn').show()
+				}
+				else
+				{
+					$('#result').html('<font color="red">'+id+'는(은) 이미 사용중인 ID입니다</font>')
+					$('#id').val("");
+					$('#id').focus()
+				}
+			}
+		})
+	});
 	
+	$('#okBtn').click(function(){
+		parent.frm.id.value=$('#id').val()
+		parent.Shadowbox.close()
+	})
 })
 </script>
 </head>
@@ -36,7 +70,7 @@ $(function(){
        <td><span id="result"></span></td>
      </tr>
      <tr>
-       <td class="text-center"><input type="button" class="btn btn-sm btn-danger" value="확인" style="display:none"></td>
+       <td class="text-center"><input type="button" class="btn btn-sm btn-danger" value="확인" style="display:none" id="okBtn"></td>
      </tr>
     </table>
    </div>
