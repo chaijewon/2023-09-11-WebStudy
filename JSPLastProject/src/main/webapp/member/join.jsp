@@ -13,7 +13,7 @@ Shadowbox.init({
 	players:['iframe']
 })
 $(function(){
-	$('#joinBtn').on('click',function(){
+	/*$('#joinBtn').on('click',function(){
 		let id=$('#id').val();
 		if(id.trim()==="")
 		{
@@ -21,7 +21,7 @@ $(function(){
 			$('#id').focus();
 			return;
 		}
-	})
+	})*/
 	
 	$('#checkBtn').click(function(){
 		Shadowbox.open({
@@ -131,7 +131,7 @@ $(function(){
      </tr>
      <tr>
        <td colspan="2" class="text-center inline">
-        <input type="button" value="회원가입"
+        <input type="submit" value="회원가입"
          class="btn-sm btn-info" id="joinBtn"
         >
         <input type=button value="취소"

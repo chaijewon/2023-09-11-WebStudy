@@ -8,19 +8,68 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#logBtn').click(function(){
+		let id=$('#log_id').val();
+		if(id.trim()==="")
+		{
+			$('#log_id').focus();
+			return;
+		}
+		let pwd=$('#log_pwd').val()
+		if(pwd.trim()==="")
+		{
+			$('#log_pwd').focus()
+			return;
+		}
+		
+		$.ajax({
+			type:'post',
+			url:'../member/login.do',
+			data:{"id":id,"pwd":pwd},
+			success:function(result)
+			{
+				// NOID , NOPWD , OK
+				if(result==='NOID')
+				{
+					alert("아이디 존재하지 않습니다")
+					$('#log_id').val("");
+					$('#log_pwd').val("");
+					$('#log_id').focus()
+				}
+				else if(result==='NOPWD')
+				{
+					alert("비밀번호가 틀립니다")
+					$('#log_pwd').val("");
+					$('#log_pwd').focus()
+				}
+				else
+				{
+					location.href="../main/main.do"
+				}
+			}
+		})
+	})
+	$('#logoutBtn').on('click',function(){
+		location.href="../member/logout.do"
+	})
+});
+</script>
 </head>
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear"> 
     <div id="logo" class="fl_left">
-      <h1><a href="index.html">Food & Recipe</a></h1>
+      <h1><a href="../main/main.do">Food & Recipe</a></h1>
     </div>
     <div class="fl_right">
     
      <c:if test="${sessionScope.id==null }">
       <ul class="inline">
-        <li><i class="fa fa-user"></i><input type="text" class="input-sm" id="id"></li>
-        <li><i class="fa fa-key"></i> <input type="password" class="input-sm" id="pwd"></li>
+        <li><i class="fa fa-user"></i><input type="text" class="input-sm" id="log_id"></li>
+        <li><i class="fa fa-key"></i> <input type="password" class="input-sm" id="log_pwd"></li>
         <li><input type="button" class="btn btn-sm btn-danger" id="logBtn" value="로그인" style="height: 28px;width: 100px"></li>
       </ul>
      </c:if>

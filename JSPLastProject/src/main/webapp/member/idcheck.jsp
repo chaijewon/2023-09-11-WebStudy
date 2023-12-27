@@ -26,6 +26,7 @@ $(function(){
 			return;
 		}*/
 		// 서버로 전송 
+		let id=$('#id').val();
 		$.ajax({
 			type:'post',
 			url:'../member/idcheck_ok.do',
