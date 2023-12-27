@@ -23,6 +23,9 @@ p{
   overflow:hidden;/* 초과된 글자를 감춘다 ...*/
   text-overflow: ellipsis;/*글자가 초과되는 경우*/
  }
+ li a{
+   cursor: pointer;
+ }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">

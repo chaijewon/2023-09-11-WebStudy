@@ -45,13 +45,23 @@ $(function(){
 	})
 	
 	$('#start').click(function(){
-		
+		let startPage=$('#start').attr("data-start")
+		let s=Number(startPage)>1?startPage-1:startPage;
+		$.ajax({
+			type:'post',
+			url:'food_list.jsp',
+			data:{"page":s},
+			success:function(result)
+			{
+				$('.col-sm-8').html(result)
+			}
+		})
 	});
 	
 	$('#end').click(function(){
 		let endPage=$('#end').attr("data-end");
 		let totalpage=$('#end').attr("data-total");
-		let end=endPage<totalpage?Number(endPage)+1:endPage;
+		let end=Number(endPage)<Number(totalpage)?Number(endPage)+1:endPage;
 		$.ajax({
 			type:'post',
 			url:'food_list.jsp',
@@ -82,13 +92,17 @@ $(function(){
    <div style="height: 20px"></div>
    <div class="text-center">
      <ul class="pagination">
-		  <li><a href="#" data-start="${startPage }" id="start">&lt;</a></li>
+		  <li><a data-start="${startPage }" id="start">&lt;</a></li>
 		  <c:forEach var="i" begin="${startPage }" end="${endPage }">
-		   <li ${curpage==i?"class=active":"" }><a href="#" class="pages">${i}</a></li>
+		   <li ${curpage==i?"class=active":"" }><a class="pages">${i}</a></li>
 		  </c:forEach>
-		  <li><a href="#" data-end="${endPage}" data-total="${totalpage }" id="end">&gt;</a></li>
+		  <li><a data-end="${endPage}" data-total="${totalpage }" id="end">&gt;</a></li>
 		</ul>
    </div>
-
+   <%-- <div style="height: 20px"></div>
+   curpage:${curpage }<br>
+   totalpage:${totalpage }<br>
+   startPage:${startPage }<br>
+   endPage:${endPage } --%>
 </body>
 </html>
