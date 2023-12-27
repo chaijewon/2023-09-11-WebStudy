@@ -44,11 +44,9 @@ public class ZipcodeVO {
 	}
 	
 	public String getAddress() {
-		return address;
+		return sido+" "+gugun+" "+dong+" "+bunji;
 	}
 	
-	public void setAddress(String address) {
-		this.address = address;
-	}
+	
 	  
 }

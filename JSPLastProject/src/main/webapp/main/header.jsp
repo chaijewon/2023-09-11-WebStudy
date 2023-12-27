@@ -21,13 +21,13 @@
       <ul class="inline">
         <li><i class="fa fa-user"></i><input type="text" class="input-sm" id="id"></li>
         <li><i class="fa fa-key"></i> <input type="password" class="input-sm" id="pwd"></li>
-        <li><input type="button" class="btn btn-sm btn-danger" id="logBtn" value="로그인" style="height: 28px"></li>
+        <li><input type="button" class="btn btn-sm btn-danger" id="logBtn" value="로그인" style="height: 28px;width: 100px"></li>
       </ul>
      </c:if>
      <c:if test="${sessionScope.id!=null }">  
       <ul class="inline">
         <li><i class="fa fa-user"></i>${sessionScope.name }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</li>
-        <li><input type="button" class="btn btn-sm btn-danger" id="logoutBtn" value="로그아웃" style="height: 28px"></li>
+        <li><input type="button" class="btn btn-sm btn-danger" id="logoutBtn" value="로그아웃" style="height: 28px;width: 100px"></li>
       </ul>
      </c:if>
     </div>
