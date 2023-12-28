@@ -16,7 +16,29 @@
       <div id="gallery">
         <figure>
           <header class="heading">
-           
+           <table class="table">
+            <tr>
+             <td class="text-center inline" colspan="2">
+              <input type="text" class="input-lg" size=25>
+              <input type="button" value="검색"
+               class="btn btn-lg btn-danger"
+              >
+             </td>
+            </tr>
+            <tr>
+             <td class="text-left">
+              <span class="btn btn-xs btn-primary">한식</span>
+              <span class="btn btn-xs btn-info">양식</span>
+              <span class="btn btn-xs btn-warning">중식</span>
+              <span class="btn btn-xs btn-success">일식</span>
+             </td>
+             <td class="text-right">
+              <span class="btn btn-xs btn-primary">평점순</span>
+              <span class="btn btn-xs btn-info">최신순</span>
+              <span class="btn btn-xs btn-warning">조회순</span>
+             </td>
+            </tr>
+           </table>
           </header>
           <ul class="nospace clear">
            <c:forEach var="vo" items="${list }" varStatus="s">

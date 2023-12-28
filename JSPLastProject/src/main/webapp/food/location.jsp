@@ -165,7 +165,9 @@ $(function(){
        <td width=45% id="seat"></td>
      </tr>
      <tr>
-       <td colspan="3" id="content"></td>
+       <td colspan="3">
+       <pre style="white-space: pre-wrap;border:none;background: white" id="content"></pre>
+       </td>
      </tr>
     </table>
   </div>
