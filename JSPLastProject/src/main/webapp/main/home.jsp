@@ -25,22 +25,23 @@
     <ul class="nospace group btmspace-80">
       <li class="one_third first">
         <article class="service"><i class="icon fa fa-ambulance"></i>
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
+          <h6 class="heading"><a href="#">오늘의 맛집</a></h6>
+          <p>단대호수를 바라보고있는 전망으로 최고인 카페 커피볶는집카페마리스를 소개한다.
+3층까지 모두다 카페이며 3층까지 테라스좌석이 마련되어서 나가서 풍경을보면 단대호수가 쫙 펼쳐져있다.</p>
           <footer><a href="#">Read More &raquo;</a></footer>
         </article>
       </li>
       <li class="one_third">
         <article class="service"><i class="icon fa fa-h-square"></i>
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
+          <h6 class="heading"><a href="#">오늘의 레시피</a></h6>
+          <p>깻잎도 쪄먹을 수 있는거 아시나요? 깻잎찜에 두부 쌈장이면 밥 한그릇 뚝딱!</p>
           <footer><a href="#">Read More &raquo;</a></footer>
         </article>
       </li>
       <li class="one_third">
         <article class="service"><i class="icon fa fa-hospital-o"></i>
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
+          <h6 class="heading"><a href="#">오늘의 서울 여행</a></h6>
+          <p>덕수궁 안에는 한옥과 양옥의 건축 양식이 어우러진 건물 정관헌이 있다. 로마네스크 양식의 석조 기둥과 베란다가 있으며 기둥 상부에 우리의 전통 문양을 새겨넣었다. 고종이 연회를 열거나 차를 즐겨 마시던 장소로 전한다. 어떤 의미에서는 우리나라 최초의 카페라고 할 수 있다.</p>
           <footer><a href="#">Read More &raquo;</a></footer>
         </article>
       </li>
@@ -93,21 +94,18 @@
        </c:forEach>
       </ul>
     </div>
-    <h2 class="sectiontitle">Lorem Ipsum Dolor</h2>
-    <ul class="nospace group">
-      <li class="one_half first">
-        <article><img class="imgl radius-10" src="../images/demo/100x100.gif" alt="">
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-        </article>
-      </li>
-      <li class="one_half">
-        <article><img class="imgl radius-10" src="../images/demo/100x100.gif" alt="">
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-        </article>
-      </li>
-    </ul>
+    <h2 class="sectiontitle">최근 방문 맛집</h2>
+    <div class="inline">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+    </div>
     <div class="clear"></div>
   </main>
 </div>

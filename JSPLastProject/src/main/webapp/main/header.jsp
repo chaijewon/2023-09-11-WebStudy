@@ -68,8 +68,8 @@ $(function(){
     
      <c:if test="${sessionScope.id==null }">
       <ul class="inline">
-        <li><i class="fa fa-user"></i><input type="text" class="input-sm" id="log_id"></li>
-        <li><i class="fa fa-key"></i> <input type="password" class="input-sm" id="log_pwd"></li>
+        <li><i class="fa fa-user"></i><input type="text" class="input-sm" id="log_id" placeholder="아이디"></li>
+        <li><i class="fa fa-key"></i> <input type="password" class="input-sm" id="log_pwd" placeholder="비밀번호"></li>
         <li><input type="button" class="btn btn-sm btn-danger" id="logBtn" value="로그인" style="height: 28px;width: 100px"></li>
       </ul>
      </c:if>
@@ -103,8 +103,8 @@ $(function(){
       </li>
       <li><a class="drop" href="#">맛집</a>
         <ul>
-          <li><a href="pages/gallery.html">전체 맛집</a></li>
-          <li><a href="pages/full-width.html">지역별 맛집 찾기</a></li>
+          <li><a href="../food/list.do">전체 맛집</a></li>
+          <li><a href="../food/location.do">지역별 맛집 찾기</a></li>
           <c:if test="${sessionScope.id!=null }">
            <li><a href="pages/sidebar-left.html">맛집 예약</a></li>
           </c:if>
@@ -131,7 +131,7 @@ $(function(){
       <li><a href="#">스토어</a></li>
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
-          <li><a href="pages/gallery.html">자유게시판</a></li>
+          <li><a href="../board/list.do">자유게시판</a></li>
           <li><a href="pages/full-width.html">공지사항</a></li>
           <li><a href="pages/sidebar-left.html">자료실</a></li>
         </ul>
