@@ -114,6 +114,70 @@ public class FoodDAO {
 	   }
 	   return total;
    }
+   // 전체
+   public List<FoodVO> foodListData(int page)
+   {
+	   List<FoodVO> list=new ArrayList<FoodVO>();
+	   try
+	   {
+		   conn=dbconn.getConnection();
+		   String sql="SELECT fno,name,poster,num "
+				     +"FROM (SELECT fno,name,poster,rownum as num "
+				     +"FROM (SELECT fno,name,poster "
+				     +"FROM food_menu_house ORDER BY fno ASC)) "
+				     +"WHERE num BETWEEN ? AND ?";
+		   ps=conn.prepareStatement(sql);
+		   int rowSize=20;
+		   int start=(rowSize*page)-(rowSize-1);
+		   int end=rowSize*page;
+		   
+		   ps.setInt(1, start);
+		   ps.setInt(2, end);
+		   
+		   ResultSet rs=ps.executeQuery();
+		   while(rs.next())
+		   {
+			   FoodVO vo=new FoodVO();
+			   vo.setFno(rs.getInt(1));
+			   vo.setName(rs.getString(2));
+			   vo.setPoster("https://www.menupan.com"+rs.getString(3));
+		       list.add(vo);
+		   }
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   dbconn.disConnection(conn, ps);
+	   }
+	   return list;
+   }
+   public int foodListTotalPage()
+   {
+	   int total=0;
+	   try
+	   {
+		   conn=dbconn.getConnection();
+		   String sql="SELECT CEIL(COUNT(*)/20.0) "
+				     +"FROM food_menu_house";
+				     
+		   ps=conn.prepareStatement(sql);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   total=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   dbconn.disConnection(conn, ps);
+	   }
+	   return total;
+   }
    public FoodVO foodFindDetailData(int fno)
    {
 	   FoodVO vo=new FoodVO();

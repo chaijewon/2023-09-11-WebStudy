@@ -35,9 +35,17 @@ $(function(){
 			success:function(res){
 				let json=JSON.parse(res);
 				
-				$('#name').html(json.name+'<span style="color:orange">'+json.score+'</span>')
+				$('#name').html(json.name+'&nbsp;<span style="color:orange">'+json.score+'</span>')
 				$('#type').text(json.type)
-				$('#theme').text(json.theme);
+				let temp=json.theme;
+				let theme=temp.split(",");
+				let html='<ul>'
+				for(let t of theme)
+				{
+					html+='<li>'+t+'</li>'
+				}
+				html+='</ul>'
+				$('#theme').html(html);
 				$('#phone').text(json.phone)
 				$('#address').text(json.address);
 				$('#time').text(json.time)
@@ -45,11 +53,11 @@ $(function(){
 				$('#price').text(json.price)
 				$('#content').text(json.content);
 				$('#poster').attr("src",json.poster)
-				
+				//$('#dialog').attr("title",json.name+" 상세보기")
 				$('#dialog').dialog({
 					autoOpen:false,
 					width:650,
-					height:630,
+					height:700,
 					modal:true
 				}).dialog("open")
 			}
@@ -129,31 +137,31 @@ $(function(){
        </td>
      </tr>
      <tr>
-       <td width=15% class="text-left">업종</td>
+       <th width=15% class="text-left">업종</th>
        <td width=45% id="type"></td>
      </tr>
      <tr>
-       <td width=15% class="text-left">전화</td>
+       <th width=15% class="text-left">전화</th>
        <td width=45% id="phone"></td>
      </tr>
      <tr>
-       <td width=15% class="text-left">주소</td>
+       <th width=15% class="text-left">주소</th>
        <td width=45% id="address"></td>
      </tr>
      <tr>
-       <td width=15% class="text-left">테마</td>
+       <th width=15% class="text-left">테마</th>
        <td width=45% id="theme"></td>
      </tr>
      <tr>
-       <td width=15% class="text-left">영업시간</td>
+       <th width=15% class="text-left">영업시간</th>
        <td width=45% id="time"></td>
      </tr>
      <tr>
-       <td width=15% class="text-left">가격대</td>
+       <th width=15% class="text-left">가격대</th>
        <td width=45% id="price"></td>
      </tr>
      <tr>
-       <td width=15% class="text-left">좌석</td>
+       <th width=15% class="text-left">좌석</th>
        <td width=45% id="seat"></td>
      </tr>
      <tr>
