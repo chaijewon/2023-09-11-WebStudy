@@ -51,7 +51,7 @@
        <c:forEach var="vo" items="${aList }">
          <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" style="width: 300px;height: 185px">
-            <figcaption><a href="#">${vo.name}</a></figcaption>
+            <figcaption><a href="../food/food_before_detail.do?fno=${vo.fno }">${vo.name}</a></figcaption>
           </figure>
         </li>
        </c:forEach>
@@ -63,7 +63,7 @@
        <c:forEach var="vo" items="${bList }">
          <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" style="width: 300px;height: 185px">
-            <figcaption><a href="#">${vo.name}</a></figcaption>
+            <figcaption><a href="../food/food_before_detail.do?fno=${vo.fno }">${vo.name}</a></figcaption>
           </figure>
         </li>
        </c:forEach>
@@ -75,7 +75,7 @@
        <c:forEach var="vo" items="${cList }">
          <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" style="width: 300px;height: 185px">
-            <figcaption><a href="#">${vo.name}</a></figcaption>
+            <figcaption><a href="../food/food_before_detail.do?fno=${vo.fno }">${vo.name}</a></figcaption>
           </figure>
         </li>
        </c:forEach>
@@ -87,23 +87,20 @@
        <c:forEach var="vo" items="${dList }">
          <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" style="width: 300px;height: 185px">
-            <figcaption><a href="#">${vo.name}</a></figcaption>
+            <figcaption><a href="../food/food_before_detail.do?fno=${vo.fno }">${vo.name}</a></figcaption>
           </figure>
         </li>
        </c:forEach>
       </ul>
     </div>
-    <h2 class="sectiontitle">최근 방문 맛집</h2>
+    <h2 class="sectiontitle">최근 방문 맛집 &nbsp;&nbsp;<a href="#">더보기</a></h2>
     <div class="inline">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
-        <img class="radius-10" src="../images/demo/100x100.gif" alt="">
+      <c:forEach var="kvo" items="${kList }" varStatus="s">
+       <c:if test="${s.index<9}">
+        <img class="radius-10" 
+           src="${kvo.poster }" style="width: 100px;height: 100px" title="${kvo.name }">
+       </c:if>
+      </c:forEach>
     </div>
     <div class="clear"></div>
   </main>

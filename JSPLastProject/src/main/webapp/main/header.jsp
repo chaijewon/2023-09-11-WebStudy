@@ -62,7 +62,7 @@ $(function(){
 <div class="wrapper row1">
   <header id="header" class="clear"> 
     <div id="logo" class="fl_left">
-      <h1><a href="../main/main.do">Food & Recipe</a></h1>
+      <h1><a href="../main/main.do">Food & Recipe & Travel</a></h1>
     </div>
     <div class="fl_right">
     
