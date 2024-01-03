@@ -53,7 +53,7 @@
   <table class="table">
      <tr>
        <td width=40% class="text-center" rowspan="8">
-        <img style="width:100%" id="poster" src="${vo.poster }">
+        <img style="width:360px;height: 500px" id="poster" src="${vo.poster }">
        </td>
        <td colspan="2">
         <h3 id="name">${vo.name }&nbsp;<span style="color:orange">${vo.score }</span></h3>

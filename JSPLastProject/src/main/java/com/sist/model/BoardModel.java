@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
+import com.sist.manager.WordManager;
 import com.sist.vo.*;
 
 import java.io.PrintWriter;
@@ -76,6 +77,9 @@ public class BoardModel {
 	   // 오라클에서 데이터 읽기
 	   BoardVO vo=dao.boardInfoData(Integer.parseInt(no), 1);
 	   request.setAttribute("vo", vo);
+	   WordManager wm=new WordManager();
+	   List<WordVO> wList=wm.wordCountData(vo.getContent());
+	   request.setAttribute("wList", wList);
 	   // => 댓글 목록 
 	   request.setAttribute("main_jsp", "../board/detail.jsp");
 	   CommonsModel.commonsFooterData(request);

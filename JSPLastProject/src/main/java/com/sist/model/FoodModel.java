@@ -207,6 +207,7 @@ public class FoodModel {
 	  request.setAttribute("addr", addr2.trim());
 	  request.setAttribute("vo", vo);
 	  request.setAttribute("main_jsp", "../food/food_detail.jsp");
+	  CommonsModel.commonsFooterData(request);
 	  return "../main/main.jsp";
   }
   

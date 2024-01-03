@@ -60,6 +60,27 @@ $(function(){
 	})
 });
 </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['단어', '사용횟수'],
+          <c:forEach var="wvo" items="${wList}">
+          ['<c:out value="${wvo.word}"/>',    <c:out value="${wvo.count}"/>],
+          </c:forEach>
+        ]);
+
+        var options = {
+          title: '사용 단어 분석',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body>
  <div class="wrapper row3">
@@ -104,6 +125,13 @@ $(function(){
        </td>
       </tr>
     </table>
+  </div>
+  <div style="height: 10px"></div>
+  <div class="one_half first">
+    <h1>댓글</h1>
+  </div>
+  <div class="one_half">
+    <div id="piechart_3d" style="width: 460px; height: 500px;"></div>
   </div>
   </main>
  </div>
