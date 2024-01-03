@@ -24,6 +24,15 @@ public class DataBoardDAO {
    }
    // => 단순 (1. JOIN , 2. 동적쿼리) 
    //  목록 출력 
+   /*
+    *   <select id="databoardListData" resultType="DataboardVO" parameterType="hashmap">
+		    SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,num
+		    FROM (SELECT no,subject,name,regdate,hit,rownum as num 
+		    FROM (SELECT no,subject,name,regdate,hit 
+		    FROM project_databoard ORDER BY no DESC))
+		    WHERE num BETWEEN #{start} AND #{end}
+       </select>
+    */
    public static List<DataBoardVO> databoardListData(Map map)
    {
 	   SqlSession session=null;
@@ -43,6 +52,11 @@ public class DataBoardDAO {
 	   }
 	   return list;
    }
+   /*
+    *   <select id="databoardRowCount" resultType="int">
+         SELECT COUNT(*) FROM project_databoard
+        </select>
+    */
    public static int databoardRowCount()
    {
 	   SqlSession session=null;
@@ -86,28 +100,14 @@ public class DataBoardDAO {
    
    public static DataBoardVO databoardDetailData(int no)
    {
-	   /*
-	    *   if(type==1)
-		   {
-			   String sql="UPDATE project_board SET "
-					     +"hit=hit+1 "
-					     +"WHERE no="+no;
-			   ps=conn.prepareStatement(sql);
-			   ps.executeUpdate();
-			   ps.close();
-		   }
-		   
-		   String sql="SELECT no,name,subject,content,"
-				     +"TO_CHAR(regdate,'YYYY-MM-DD'),hit "
-				     +"FROM project_board "
-				     +"WHERE no="+no;
-	    */
+	   
 	   DataBoardVO vo=new DataBoardVO();
 	   SqlSession session=null;
 	   try
 	   {
-		   session=ssf.openSession();
+		   session=ssf.openSession(true);
 		   session.update("hitIncrement",no);
+		   
 		   vo=session.selectOne("databoardDetailData",no);
 	   }catch(Exception ex)
 	   {
@@ -119,5 +119,69 @@ public class DataBoardDAO {
 			   session.close();
 	   }
 	   return vo;
+   }
+   public static DataBoardVO databoardFileInfoData(int no)
+   {
+	   DataBoardVO vo=new DataBoardVO();
+	   SqlSession session=null;
+	   try
+	   {
+		   session=ssf.openSession();
+		   vo=session.selectOne("databoardFileInfoData",no);
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   if(session!=null)
+			   session.close();
+	   }
+	   return vo;
+   }
+   public static String databoardDelete(int no,String pwd)
+   {
+	   // var res:String="no" val
+	   String res="no";
+	   SqlSession session=ssf.openSession(true);
+	   String db_pwd=session.selectOne("databoardGetPassword",no);
+	   if(db_pwd.equals(pwd))
+	   {
+		   res="yes";
+		   session.delete("databoardDelete",no);
+	   }
+	   return res;
+   }
+   public static DataBoardVO databoardUpdateData(int no)
+   {
+	   SqlSession session=ssf.openSession();
+	   DataBoardVO vo=session.selectOne("databoardDetailData",no);
+	   session.close();
+	   return vo;
+   }
+   /*
+    *      <select id="databoardGetPassword" resultType="string" parameterType="int">
+		     SELECT pwd FROM project_databoard
+		     <include refid="where-no"/>
+		   </select>
+		   
+		   <update id="databoardUpdate" parameterType="DataBoardVO">
+		     UPDATE project_databoard SET
+		     name=#{name},subject=#{subject},content=#{content}
+		     <include refid="where-no"/>
+		   </update>
+    */
+   public static String databoardUpdate(DataBoardVO vo)
+   {
+	   String res="no";
+	   SqlSession session=ssf.openSession(true);
+	   String db_pwd=session.selectOne("databoardGetPassword",vo.getNo());
+	   if(db_pwd.equals(vo.getPwd()))
+	   {
+		   res="yes";
+		   session.update("databoardUpdate",vo);
+	   }
+	   session.close();
+	   return res;
    }
 }

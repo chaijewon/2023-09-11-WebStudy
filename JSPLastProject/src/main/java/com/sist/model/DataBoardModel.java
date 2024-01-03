@@ -143,6 +143,70 @@ public class DataBoardModel {
 		   bos.close();
 	   }catch(Exception ex){}
    }
+   @RequestMapping("databoard/delete_ok.do")
+   public void databoard_delete(HttpServletRequest request,
+	        HttpServletResponse response)
+   {
+	   String no=request.getParameter("no");
+	   String pwd=request.getParameter("pwd");
+	   // data:{"no":no,"pwd":pwd}
+	   DataBoardVO vo=DataBoardDAO.databoardFileInfoData(Integer.parseInt(no));
+	   String res=DataBoardDAO.databoardDelete(Integer.parseInt(no), pwd);
+	   if(vo.getFilesize()>0)
+	   {
+		   try
+		   {
+			   File file=new File("c:\\download\\"+vo.getFilename());
+			   file.delete();
+		   }catch(Exception ex){}
+	   }
+	   
+	   // ajax에 값을 전송 
+	   try
+	   {
+		   PrintWriter out=response.getWriter();
+		   out.write(res);// no , yes
+	   }catch(Exception ex) {}
+   }
+   @RequestMapping("databoard/update.do")
+   public String databoard_update(HttpServletRequest request,
+	        HttpServletResponse response)
+   {
+	   String no=request.getParameter("no");
+	   DataBoardVO vo=DataBoardDAO.databoardUpdateData(Integer.parseInt(no));
+	   request.setAttribute("vo", vo);
+	   CommonsModel.commonsFooterData(request);
+	   request.setAttribute("main_jsp", "../databoard/update.jsp");
+	   return "../main/main.jsp";
+   }
+   @RequestMapping("databoard/update_ok.do")
+   public void databoard_update_ok(HttpServletRequest request,
+	        HttpServletResponse response)
+   {
+	   try
+	   {
+		   request.setCharacterEncoding("UTF-8");
+	   }catch(Exception ex) {}
+	   String no=request.getParameter("no");
+	   String name=request.getParameter("name");
+	   String subject=request.getParameter("subject");
+	   String content=request.getParameter("content");
+	   String pwd=request.getParameter("pwd");
+	   
+	   DataBoardVO vo=new DataBoardVO();
+	   vo.setNo(Integer.parseInt(no));
+	   vo.setName(name);
+	   vo.setSubject(subject);
+	   vo.setContent(content);
+	   vo.setPwd(pwd);
+	   
+	   String res=DataBoardDAO.databoardUpdate(vo);
+	   try
+	   {
+		   PrintWriter out=response.getWriter();
+		   out.write(res);
+	   }catch(Exception ex) {}
+   }
 }
 
 
