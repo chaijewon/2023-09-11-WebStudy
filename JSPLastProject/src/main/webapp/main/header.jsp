@@ -106,7 +106,7 @@ $(function(){
           <li><a href="../food/list.do">전체 맛집</a></li>
           <li><a href="../food/location.do">지역별 맛집 찾기</a></li>
           <c:if test="${sessionScope.id!=null }">
-           <li><a href="pages/sidebar-left.html">맛집 예약</a></li>
+           <li><a href="../reserve/reserve_main.do">맛집 예약</a></li>
           </c:if>
         </ul>
       </li>

@@ -7,6 +7,7 @@
   <!-- VO등록 -->
   <typeAliases>
     <typeAlias type="com.sist.vo.DataBoardVO" alias="DataBoardVO"/>
+    <typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
   </typeAliases>
   <!-- 데이터베이스 연결 -->
   <environments default="development">
@@ -29,5 +30,6 @@
   <!-- SQL 문장 전송  -->
   <mappers>
     <mapper resource="com/sist/dao/databoard_mapper.xml"/>
+    <!-- <mapper resource="com/sist/dao/reserve_mapper.xml"/> -->
   </mappers>
 </configuration>

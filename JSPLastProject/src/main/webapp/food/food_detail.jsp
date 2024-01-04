@@ -115,7 +115,7 @@
         <tr>
          <td>
           <form method=post>
-            <textarea rows="3" cols="40" style="float: left"></textarea>
+            <textarea rows="4" cols="40" style="float: left"></textarea>
             <input type=submit value="댓글쓰기"
              class="btn btn-sm btn-danger"
              style="height: 87px;float: left">

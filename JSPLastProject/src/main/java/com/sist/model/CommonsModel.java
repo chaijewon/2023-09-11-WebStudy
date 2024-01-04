@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import com.sist.vo.*;
 import com.sist.dao.*;
 import com.sist.manager.*;
+// 공통모듈 => Spring (AOP) => 메소드 등록 
+// 시간 => setInterval() => task 
+
+
 public class CommonsModel {
    public static void commonsFooterData(HttpServletRequest request)
    {

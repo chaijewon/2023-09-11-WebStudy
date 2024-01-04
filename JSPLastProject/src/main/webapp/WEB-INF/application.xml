@@ -5,4 +5,5 @@
   <bean id="food" class="com.sist.model.FoodModel"/>
   <bean id="board" class="com.sist.model.BoardModel"/>
   <bean id="databoard" class="com.sist.model.DataBoardModel"/>
+  <bean id="reserve" class="com.sist.model.ReserveModel"/>
 </beans>
