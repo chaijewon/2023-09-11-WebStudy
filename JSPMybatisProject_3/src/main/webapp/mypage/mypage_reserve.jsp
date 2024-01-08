@@ -36,6 +36,7 @@
       <c:if test="${vo.ok==0 }">
         <span class="btn btn-sm btn-default">예약대기</span>
       </c:if>
+      <a href="#" class="btn btn-sm btn-primary">취소</a>
     </td>
    </tr>
    </c:forEach>

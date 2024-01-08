@@ -32,4 +32,13 @@ public class AdminModel {
 		  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 		  return "../main/main.jsp";
 	  }
+	  @RequestMapping("adminpage/admin_reserve_ok.do")
+	  public String admin_reserve_ok(HttpServletRequest request,
+			  HttpServletResponse response)
+	  {
+		  String no=request.getParameter("no");
+		  // 데이터베이스 연동
+		  ReserveDAO.reserveAdminOk(Integer.parseInt(no));
+		  return "redirect:../adminpage/admin_reserve.do";
+	  }
 }

@@ -92,4 +92,17 @@ public class ReserveDAO {
 	  session.close();
 	  return list;
   }
+  /*
+   *   <update id="reserveAdminOk" parameterType="int">
+    UPDATE reserve_info SET
+    ok=1
+    WHERE no=#{no}
+  </update>
+   */
+  public static void reserveAdminOk(int no)
+  {
+	  SqlSession session=ssf.openSession(true);
+	  session.update("reserveAdminOk",no);
+	  session.close();
+  }
 }

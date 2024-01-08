@@ -57,7 +57,7 @@
   </resultMap>
   <select id="reserveMyPageListData" resultMap="myMap" parameterType="string">
     SELECT no,r.fno,poster,name,address,phone,
-           day,r.time,inwon,regdate
+           day,r.time,inwon,regdate,ok
     FROM reserve_info r , food_menu_house f
     WHERE r.fno=f.fno
     AND id=#{id}
@@ -66,10 +66,15 @@
   <!-- 어드민페이지 예약정보 읽기-->
   <select id="reserveAdminPageListData" resultMap="myMap">
     SELECT no,r.fno,poster,name,address,phone,
-           day,r.time,inwon,regdate
+           day,r.time,inwon,regdate,id,ok
     FROM reserve_info r , food_menu_house f
     WHERE r.fno=f.fno
     ORDER BY no DESC
   </select>
   <!-- 어드민 예약 승인 -->
+  <update id="reserveAdminOk" parameterType="int">
+    UPDATE reserve_info SET
+    ok=1
+    WHERE no=#{no}
+  </update>
 </mapper>
