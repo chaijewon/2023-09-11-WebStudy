@@ -96,6 +96,18 @@ $(function(){
           <tr>
             <td>인원:<span id="food_inwon"></span></td>
           </tr>
+          
+          <tr style="display: none" id="ok">
+		      <td class="text-center">
+		       <form method="post" action="../reserve/reserve_ok.do">
+		         <input type=hidden name="fno" id="fno">
+		         <input type=hidden name="rday" id="rday">
+		         <input type=hidden name="rtime" id="rtime">
+		         <input type=hidden name="rinwon" id="rinwon">
+		         <button class="btn btn-sm btn-danger">예약하기</button>
+		       </form>
+		      </td>
+		    </tr>
          </table>
        </td>
       </tr>
@@ -103,11 +115,21 @@ $(function(){
         <td width="35%" height="120" class="warning">
           <table class="table">
            <caption><h3>시간정보</h3></caption>
+           <tr>
+            <td>
+              <div id="times"></div>
+            </td>
+           </tr>
           </table>
         </td>
         <td width="30%" height="120" class="danger">
           <table class="table">
            <caption><h3>인원정보</h3></caption>
+           <tr>
+            <td>
+             <div id="inwons"></div>
+            </td>
+           </tr>
           </table>
         </td>
       </tr>

@@ -13,7 +13,18 @@ import java.util.*;
 public class ReserveInfoVO {
     private int no,fno,ok;
     private String id,day,time,inwon;
+    private FoodVO fvo=new FoodVO();
+    
     private Date regdate;
+    
+    
+	
+	public FoodVO getFvo() {
+		return fvo;
+	}
+	public void setFvo(FoodVO fvo) {
+		this.fvo = fvo;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -61,6 +72,12 @@ public class ReserveInfoVO {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	// @121131
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return fno+" "+day+" "+time+" "+inwon+" "+id;
 	}
 	   
 }

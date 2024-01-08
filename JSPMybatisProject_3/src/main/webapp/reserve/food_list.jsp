@@ -15,7 +15,7 @@ $(function(){
 		let fno=$(this).attr("data-fno");
 		$('#food_image').attr("src",poster);
 		$("#food_name").text(name)
-		
+		$('#fno').val(fno);
 		$.ajax({
 			type:'post',
 			url:'../reserve/food_date.do',

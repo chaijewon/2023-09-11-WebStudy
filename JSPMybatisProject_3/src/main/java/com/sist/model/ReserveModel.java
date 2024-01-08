@@ -2,6 +2,7 @@ package com.sist.model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ReserveDAO;
@@ -79,5 +80,56 @@ public class ReserveModel {
 	  request.setAttribute("rday", rday);
 	  return "../reserve/date.jsp";
   }
-  
+  @RequestMapping("reserve/food_time.do")
+  public String food_time(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String day=request.getParameter("day");
+	  String rtimes=ReserveDAO.reserveTimes(Integer.parseInt(day));
+	  // 2,3,6,7,....
+	  List<String> list=new ArrayList<String>();
+	  StringTokenizer st=new StringTokenizer(rtimes,",");
+	  while(st.hasMoreTokens())
+	  {
+		  int tno=Integer.parseInt(st.nextToken());
+		  String time=ReserveDAO.reserveGetTime(tno);
+		  list.add(time);
+	  }
+	  request.setAttribute("list", list);
+	  return "../reserve/food_time.jsp";
+  }
+  @RequestMapping("reserve/reserve_inwon.do")
+  public String reserve_inwon(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  return "../reserve/food_inwon.jsp";
+  }
+  @RequestMapping("reserve/reserve_ok.do")
+  public String reserve_ok(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  try 
+	  {
+		   request.setCharacterEncoding("UTF-8");  
+	  }catch(Exception ex) {}
+	  
+	  String fno=request.getParameter("fno");
+	  String rday=request.getParameter("rday");
+	  String rtime=request.getParameter("rtime");
+	  String rinwon=request.getParameter("rinwon");
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  
+	  ReserveInfoVO vo=new ReserveInfoVO();
+	  vo.setFno(Integer.parseInt(fno));
+	  vo.setId(id);
+	  vo.setDay(rday);
+	  vo.setTime(rtime);
+	  vo.setInwon(rinwon);
+	  
+	  System.out.println(vo);//vo.toString()
+	  // 데이터베이스 전송 
+	  ReserveDAO.reserveInsert(vo);
+	  return "redirect:../mypage/mypage_reserve.do";
+  }
 }

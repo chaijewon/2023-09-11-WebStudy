@@ -12,7 +12,32 @@
   margin: 0px auto;
   width: 100%
 }
+.rdays:hover{
+  cursor: pointer;
+}
 </style>
+<script type="text/javascript" src="http://code.juqery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.rdays').click(function(){
+		let year=$(this).attr("data-year");
+		let month=$(this).attr("data-month");
+		let day=$(this).text();
+		let rday=year+"년도 "+month+"월 "+day+"일"
+		$('#food_day').text(rday);
+		$('#rday').val(rday);
+		$.ajax({
+			type:'post',
+			url:'../reserve/food_time.do',
+			data:{"day":day},
+			success:function(result)
+			{
+				$('#times').html(result)
+			}
+		})
+	});
+})
+</script>
 </head>
 <body>
   <table class="table">
@@ -28,7 +53,7 @@
          <td class="text-center">&nbsp;</td>
        </c:if>
         <c:if test="${rday[i]==1}">
-         <td class="text-center danger rdays">${i }</td>
+         <td class="text-center rdays" style="background-color:black;color:white" data-year="${year }" data-month="${month }">${i }</td>
         </c:if>
         <c:if test="${rday[i]==0}">
          <td class="text-center">${i }</td>

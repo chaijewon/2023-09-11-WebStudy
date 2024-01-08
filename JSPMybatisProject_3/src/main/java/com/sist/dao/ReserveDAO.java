@@ -38,4 +38,58 @@ public class ReserveDAO {
 	  session.close();
 	  return rdays;
   }
+  /*
+   *   <select id="reserveTimes" resultType="string" parameterType="int">
+	    SELECT rtime FROM reserve_day
+	    WHERE rno=#{rno}
+	  </select>
+	  <select id="reserveGetTime" resultType="string" parameterType="int">
+	    SELECT time FROM reserve_time
+	    WHERE tno=#{tno}
+	  </select>
+   */
+  public static String reserveTimes(int rno)
+  {
+	  SqlSession session=ssf.openSession();
+	  String rtimes=session.selectOne("reserveTimes",rno);
+	  session.close();
+	  return rtimes;
+  }
+  public static String reserveGetTime(int tno)
+  {
+	  SqlSession session=ssf.openSession();
+	  String rtimes=session.selectOne("reserveGetTime",tno);
+	  session.close();
+	  return rtimes;
+  }
+  public static void reserveInsert(ReserveInfoVO vo)
+  {
+	  SqlSession session=ssf.openSession(true);
+	  session.insert("reserveInsert",vo);
+	  session.close();
+  }
+  /*
+   *   <select id="reserveMyPageListData" resultMap="myMap" parameterType="string">
+	    SELECT no,r.fno,poster,name,address,phone,
+	           day,time,inwon,regdate
+	    FROM reserve_info r , food_menu_house f
+	    WHERE r.fno=f.fno
+	    AND id=#{id}
+	    ORDER BY no DESC
+	  </select>
+   */
+  public static List<ReserveInfoVO> reserveMyPageListData(String id)
+  {
+	  SqlSession session=ssf.openSession();
+	  List<ReserveInfoVO> list=session.selectList("reserveMyPageListData",id);
+	  session.close();
+	  return list;
+  }
+  public static List<ReserveInfoVO> reserveAdminPageListData()
+  {
+	  SqlSession session=ssf.openSession();
+	  List<ReserveInfoVO> list=session.selectList("reserveAdminPageListData");
+	  session.close();
+	  return list;
+  }
 }

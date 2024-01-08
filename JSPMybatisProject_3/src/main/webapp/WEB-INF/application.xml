@@ -6,4 +6,6 @@
   <bean id="goods" class="com.sist.model.GoodsModel"/>
   <bean id="vue" class="com.sist.model.VueModel"/>
   <bean id="reserve" class="com.sist.model.ReserveModel"/>
+  <bean id="mypage" class="com.sist.model.MyPageModel"/>
+  <bean id="admin" class="com.sist.model.AdminModel"/>
 </beans>
