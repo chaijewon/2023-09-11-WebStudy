@@ -15,6 +15,16 @@ $(function(){
 		let fno=$(this).attr("data-fno");
 		$('#food_image').attr("src",poster);
 		$("#food_name").text(name)
+		
+		$.ajax({
+			type:'post',
+			url:'../reserve/food_date.do',
+			data:{"fno":fno},
+			success:function(result)
+			{
+				$('#food_date').html(result);
+			}
+		})
 	})
 })
 </script>
@@ -22,7 +32,7 @@ $(function(){
 <body>
   <table class="table">
     <c:forEach var="vo" items="${list }">
-      <tr data-poster="https://www.menupan.com${vo.poster }" data-no="${vo.fno }" data-name="${vo.name }" class="trs">
+      <tr data-poster="https://www.menupan.com${vo.poster }" data-fno="${vo.fno }" data-name="${vo.name }" class="trs">
        <td class="text-center">
         <img src="https://www.menupan.com${vo.poster }" style="width: 30px;height: 30px">
        </td>

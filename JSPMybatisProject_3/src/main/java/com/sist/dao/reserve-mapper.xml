@@ -18,4 +18,8 @@
      WHERE type LIKE '%일식%'
     </if>
   </select>
+  <select id="reserveDays" resultType="string" parameterType="int">
+    SELECT rday FROM food_menu_house
+    WHERE fno=#{fno}
+  </select>
 </mapper>

@@ -69,6 +69,11 @@ $(function(){
        <td width=45% height="580" class="success">
          <table class="table">
           <caption><h3>예약일 정보</h3></caption>
+          <tr>
+           <td>
+             <div id="food_date"></div>
+           </td>
+          </tr>
          </table>
        </td>
        <td width=35% rowspan="2" class="info">

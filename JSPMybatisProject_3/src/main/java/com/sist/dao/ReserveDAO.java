@@ -31,4 +31,11 @@ public class ReserveDAO {
 	  session.close();
 	  return list;
   }
+  public static String reserveDays(int fno)
+  {
+	  SqlSession session=ssf.openSession();
+	  String rdays=session.selectOne("reserveDays",fno);
+	  session.close();
+	  return rdays;
+  }
 }
