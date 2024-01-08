@@ -12,10 +12,10 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Final</a>
+      <a class="navbar-brand" href="../member/login.do">Login</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a href="../main/main.do">Home</a></li>
       <c:if test="${sessionScope.id!=null }">
         <li><a href="../reserve/reserve_main.do">맛집예약</a></li>
       </c:if>

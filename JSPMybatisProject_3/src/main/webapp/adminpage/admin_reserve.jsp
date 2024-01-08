@@ -12,6 +12,7 @@
  <table class="table">
    <tr>
     <th class="text-center">번호</th>
+    <th class="text-center">ID</th>
     <th class="text-center"></th>
     <th class="text-center">업체명</th>
     <th class="text-center">예약일</th>
