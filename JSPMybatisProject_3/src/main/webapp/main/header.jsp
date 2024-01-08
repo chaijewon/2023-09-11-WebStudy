@@ -17,7 +17,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <c:if test="${sessionScope.id!=null }">
-        <li><a href="#">맛집예약</a></li>
+        <li><a href="../reserve/reserve_main.do">맛집예약</a></li>
       </c:if>
       <li><a href="#">스토어</a></li>
       <c:if test="${sessionScope.id!=null }">
