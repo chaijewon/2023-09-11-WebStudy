@@ -4,6 +4,14 @@ public class FoodVO {
 	private int fno;
     private String poster,name,type,address,phone,theme,price,time,seat,content;
     private double score;
+    private String rday;
+    
+	public String getRday() {
+		return rday;
+	}
+	public void setRday(String rday) {
+		this.rday = rday;
+	}
 	public int getFno() {
 		return fno;
 	}
