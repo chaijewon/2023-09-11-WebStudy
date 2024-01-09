@@ -37,7 +37,7 @@ public class SendMailer {
     		"	}" + 
     		"	 td {" + 
     		"	  border-bottom: 1px solid rgba(0,0,0,.1);" + 
-    		"	  background: #fff;" + 
+    		"	  background: #000;" + 
     		"	}" + 
     		"	a {" + 
     		"	  color: #73685d;" + 
@@ -105,7 +105,7 @@ public class SendMailer {
 	        	MimeMessage message = new MimeMessage(session); 
 	              message.setFrom(new InternetAddress(user)); 
 	              message.addRecipient(Message.RecipientType.TO, new InternetAddress("vcandjava@nate.com")); // 메일 제목 
-	              message.setSubject("등록 내역입니다!!"); // 메일 내용
+	              message.setSubject("예약 내역입니다!!"); // 메일 내용
 	              
 	              String html="<html>"
 	            		     +"<head>"
@@ -114,24 +114,36 @@ public class SendMailer {
 	            		     +"<table>"
 	            		     +"<thead>"
 	            		     +"<tr>"
-	            		     +"<th width=15%>회원번호</th>"
+	            		     +"<th width=15%>예약번호</th>"
 	            		     +"<td width=85%>1</td>"
 	            		     +"</tr>"
 	            		     +"<tr>"
-	            		     +"<th>이름</th>"
-	            		     +"<td>홍길동</td>"
+	            		     +"<th>아이디</th>"
+	            		     +"<td>hong</td>"
 	            		     +"</tr>"
 	            		     +"<tr>"
-	            		     +"<th>성별</th>"
-	            		     +"<td>남자</td>"
+	            		     +"<th>맛집명</th>"
+	            		     +"<td>승일참치</td>"
 	            		     +"</tr>"
 	            		     +"<tr>"
-	            		     +"<th>생년월일</th>"
-	            		     +"<td>2000-10-10</td>"
+	            		     +"<th></th>"
+	            		     +"<td><img src=\"https://www.menupan.com/restaurant/restimg/007/zzmenuimg/j10371733_z.jpg\" width=200 height=200></td>"
 	            		     +"</tr>"
 	            		     +"<tr>"
-	            		     +"<th>ID</th>"
-	            		     +"<td>hong12</td>"
+	            		     +"<th>전화</th>"
+	            		     +"<td>02)2203-3044</td>"
+	            		     +"</tr>"
+	            		     +"<tr>"
+	            		     +"<th>주소</th>"
+	            		     +"<td>서울 송파구 송파동 58-18 성우빌딩 2층</td>"
+	            		     +"</tr>"
+	            		     +"<tr>"
+	            		     +"<th>예약일</th>"
+	            		     +"<td>2024년 01월 09일</td>"
+	            		     +"</tr>"
+	            		     +"<tr>"
+	            		     +"<th>인원</th>"
+	            		     +"<td>5명</td>"
 	            		     +"</tr>"
 	            		     +"<body>"
 	            		     +"</body>"

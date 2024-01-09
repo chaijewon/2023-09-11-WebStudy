@@ -8,4 +8,5 @@
   <bean id="reserve" class="com.sist.model.ReserveModel"/>
   <bean id="mypage" class="com.sist.model.MyPageModel"/>
   <bean id="admin" class="com.sist.model.AdminModel"/>
+  <bean id="chat" class="com.sist.model.ChatModel"/>
 </beans>

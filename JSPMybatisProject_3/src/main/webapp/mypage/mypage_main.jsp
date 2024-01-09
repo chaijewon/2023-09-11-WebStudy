@@ -21,7 +21,8 @@
         <li class="list-group-item"><a href="#">회원수정</a></li>
         <li class="list-group-item"><a href="#">회원탈퇴</a></li>
         <li class="list-group-item"><a href="../mypage/mypage_reserve.do">예약정보</a></li>
-        <li class="list-group-item"><a href="#">구매정보</a></li>
+        <li class="list-group-item"><a href="../mypage/mypage_cart.do">장바구니정보</a></li>
+        <li class="list-group-item"><a href="../mypage/mypage_buy.do">구매정보</a></li>
         <li class="list-group-item"><a href="#">찜정보</a></li>
         <li class="list-group-item"><a href="#">묻고답하기</a></li>
        </ul>

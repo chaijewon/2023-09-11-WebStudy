@@ -31,5 +31,34 @@ public class MyPageModel {
 	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("mypage/mypage_cart.do")
+  public String mypage_cart(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  Map map=new HashMap();
+	  map.put("id", id);
+	  List<CartVO> list=GoodsDAO.mypageGoodsCartData(map);
+	  request.setAttribute("list", list);
+	  request.setAttribute("mypage_jsp", "../mypage/mypage_cart.jsp");
+	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+	  return "../main/main.jsp";
+  }
+  
+  @RequestMapping("mypage/mypage_buy.do")
+  public String mypage_buy(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  Map map=new HashMap();
+	  map.put("id", id);
+	  List<CartVO> list=GoodsDAO.mypageGoodsBuyData(map);
+	  request.setAttribute("list", list);
+	  request.setAttribute("mypage_jsp", "../mypage/mypage_buy.jsp");
+	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+	  return "../main/main.jsp";
+  }
   
 }

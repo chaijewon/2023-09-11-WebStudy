@@ -136,6 +136,7 @@ public class DispatcherServlet extends HttpServlet {
 		// /JSPMVCFinalProject + 
 		// list.do
 		uri=uri.substring(request.getContextPath().length()+1);
+		System.out.println("사용자 요청 URI:"+uri);
 		try
 		{
 			// RequestMapping
@@ -172,6 +173,7 @@ public class DispatcherServlet extends HttpServlet {
 						// 
 						
 						String jsp=(String)m.invoke(obj, request,response);
+						System.out.println("출력할 JSP:"+jsp);
 						// 파일업로드 / 쿠키 
 						//  m이란 메소드 호출한다 => invoke(객체,매개변수....)
 						if(jsp==null) // void => ajax
@@ -195,7 +197,10 @@ public class DispatcherServlet extends HttpServlet {
 					
 				}
 			}
-		}catch(Exception ex) {}
+		}catch(Exception ex) {
+			System.out.println("Error발생:"+ex.getMessage());
+			ex.printStackTrace();
+		}
 		
 	}
 
