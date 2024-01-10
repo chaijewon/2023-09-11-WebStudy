@@ -22,6 +22,7 @@ $(function(){
 			data:{"fno":fno},
 			success:function(result)
 			{
+				//alert(result)
 				$('#food_date').html(result);
 			}
 		})

@@ -29,6 +29,16 @@
        </c:if>
       </c:if>
       <li><a href="../chat/chat.do">채팅</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">서울 여행
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="../seoul/location.do">명소</a></li>
+          <li><a href="../seoul/nature.do">자연 & 관광</a></li>
+          <li><a href="../seoul/shop.do">쇼핑</a></li>
+          <li><a href="../seoul/weather.do">날씨</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>

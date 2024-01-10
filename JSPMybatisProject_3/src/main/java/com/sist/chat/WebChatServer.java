@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -15,9 +17,6 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/webChatServer")
 public class WebChatServer extends HttpServlet {
 	private static Map<Session,ChatClient> users = Collections.synchronizedMap(new HashMap<Session, ChatClient>());
-	
-	
-	
 	@OnMessage
 	public void onMsg(String message, Session session) throws IOException{
 		String userName = users.get(session).getName();
@@ -36,16 +35,16 @@ public class WebChatServer extends HttpServlet {
 	}
 	
 	@OnOpen
-	public void onOpen(Session session){
+	public void onOpen(Session session,EndpointConfig config){
 		String userName = "user";
 		int rand_num = (int)(Math.random()*1000);
-		
+		HttpSession httpSession=(HttpSession)config.getUserProperties().get("PRIVATE_HTTP_SESSION");
 		
 		ChatClient client = new ChatClient();
-		System.out.println(session);
-		client.setName(userName+rand_num);
+		System.out.println(httpSession);
+		client.setName((String)httpSession.getAttribute("name"));
 		
-		System.out.println(session + " connect");
+		System.out.println(session+"("+(client.getName()) + ") connect");
 		
 		users.put(session, client);
 		sendNotice(client.getName() + "님이 입장하셨습니다. 현재 사용자 " + users.size() + "명");
