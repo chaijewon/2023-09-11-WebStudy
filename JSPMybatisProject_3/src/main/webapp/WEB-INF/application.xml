@@ -10,4 +10,5 @@
   <bean id="admin" class="com.sist.model.AdminModel"/>
   <bean id="chat" class="com.sist.model.ChatModel"/>
   <bean id="seoul" class="com.sist.model.SeoulModel"/>
+  <bean id="reply" class="com.sist.model.ReplyModel"/>
 </beans>

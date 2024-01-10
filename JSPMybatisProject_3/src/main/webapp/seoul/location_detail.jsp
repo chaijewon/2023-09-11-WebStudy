@@ -331,7 +331,46 @@
    </div>
    <div style="height: 20px"></div>
    <div class="row">
-   
+     <table class="table">
+      <tr>
+       <td>
+         <c:forEach var="rvo" items="${rList }">
+           <table class="table">
+            <tr>
+             <td class="text-left">◑${rvo.name }(${rvo.dbday })</td>
+             <td class="text-right">
+               <c:if test="${rvo.id==sessionScope.id }">
+                <span class="btn btn-xs btn-danger">수정</span>
+                <a href="#" class="btn btn-xs btn-primary">삭제</a>
+               </c:if>
+             </td>
+            </tr>
+            <tr>
+             <td colspan="2" class="text-left" valign="top">
+              <pre style="white-space: pre-wrap;background-color: white;border:none">${rvo.msg }</pre>
+             </td>
+            </tr>
+           </table>
+         </c:forEach>
+       </td>
+      </tr>
+     </table>
+     <c:if test="${sessionScope.id!=null }">
+	     <table class="table">
+	      <tr>
+	       <td>
+	        <form method="post" action="../reply/insert.do">
+	         <input type="hidden" name="type" value="1">
+	         <input type="hidden" name="cno" value="${vo.no}">
+	         <textarea rows="5" cols="70" name="msg" style="float: left;"></textarea>
+	         <input type="submit" value="댓글쓰기" style="float: left;width: 95px;height: 103px;text-align: center;margin-left: 2px"
+	          class="btn-primary"
+	         >
+	        </form>
+	       </td>
+	      </tr>
+	     </table>
+     </c:if>
    </div>
   </div>
 </body>

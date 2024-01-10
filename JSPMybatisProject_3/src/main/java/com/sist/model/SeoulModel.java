@@ -8,8 +8,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import com.sist.controller.RequestMapping;
+import com.sist.dao.ReplyDAO;
 import com.sist.dao.SeoulDAO;
 import com.sist.vo.FoodVO;
+import com.sist.vo.ReplyVO;
 import com.sist.vo.SeoulVO;
 
 import java.util.*;
@@ -172,6 +174,11 @@ public class SeoulModel {
 	  List<FoodVO> list=SeoulDAO.seoulFoodData(addr2);
 	  request.setAttribute("list", list);
 	  request.setAttribute("addr", addr2);
+	  // 댓글 전송 
+	  ReplyDAO dao=ReplyDAO.newInstance();
+	  List<ReplyVO> rList=dao.replyListData(1, Integer.parseInt(no));
+	  request.setAttribute("rList", rList);
+	  request.setAttribute("rcount", rList.size());
 	  request.setAttribute("main_jsp", "../seoul/location_detail.jsp");
 	  return "../main/main.jsp";
   }
