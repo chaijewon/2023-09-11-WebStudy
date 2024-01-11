@@ -69,6 +69,16 @@
     SELECT * FROM seoul_location
     WHERE no=#{no}
   </select>
+  <update id="seoulNatureHitIncrement" parameterType="int">
+    UPDATE seoul_nature SET
+    hit=hit+1
+    WHERE no=#{no}
+  </update>
+  <select id="seoulNatureDetailData" resultType="SeoulVO"
+  parameterType="int">
+    SELECT * FROM seoul_nature
+    WHERE no=#{no}
+  </select>
   <!-- 인접 맛집 -->
   <select id="seoulFoodData" resultType="FoodVO" parameterType="string">
     SELECT fno,name,poster,type,rownum 

@@ -35,4 +35,31 @@ public class ReplyModel {
 	  dao.replyInsert(vo);
 	  return "redirect:../seoul/"+tab[Integer.parseInt(type)]+"_detail.do?no="+cno;
   }
+  @RequestMapping("reply/delete.do")
+  public String reply_delete(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String type=request.getParameter("type");//구분자 
+	  String cno=request.getParameter("cno");//명소번호
+	  String no=request.getParameter("no");//댓글 번호
+	  ReplyDAO dao=ReplyDAO.newInstance();
+	  dao.replyDelete(Integer.parseInt(no));
+	  return "redirect:../seoul/"+tab[Integer.parseInt(type)]+"_detail.do?no="+cno;
+  }
+  @RequestMapping("reply/update.do")
+  public String reply_update(HttpServletRequest request,
+		  HttpServletResponse respons)
+  {
+	  try
+	  {
+		  request.setCharacterEncoding("UTF-8");
+	  }catch(Exception ex) {}
+	  String type=request.getParameter("type");//구분자 
+	  String cno=request.getParameter("cno");//명소번호
+	  String no=request.getParameter("no");//댓글 번호
+	  String msg=request.getParameter("msg");
+	  ReplyDAO dao=ReplyDAO.newInstance();
+	  dao.replyUpdate(Integer.parseInt(no), msg);
+	  return "redirect:../seoul/"+tab[Integer.parseInt(type)]+"_detail.do?no="+cno;
+  }
 }

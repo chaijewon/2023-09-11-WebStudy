@@ -187,6 +187,29 @@ public class SeoulDAO {
 	   }
 	   return vo;
    }
+   public static SeoulVO seoulNatureDetailData(int no)
+   {
+	   // 매개변수는 사용자 요청값 
+	   SeoulVO vo=new SeoulVO();
+	   SqlSession session=null;
+	   try
+	   {
+		   session=ssf.openSession();
+		   session.update("seoulNatureHitIncrement",no);
+		   session.commit();
+		   vo=session.selectOne("seoulNatureDetailData", no);
+	   }catch(Exception ex)
+	   {
+		   
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   if(session!=null)
+			   session.close();
+	   }
+	   return vo;
+   }
    /*
     *   <select id="seoulFoodData" resultType="FoodVO" parameterType="string">
 		    SELECT fno,name,poster,rownum 

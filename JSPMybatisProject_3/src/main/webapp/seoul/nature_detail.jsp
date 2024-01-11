@@ -364,7 +364,7 @@ $(function(){
                <c:if test="${rvo.id==sessionScope.id }">
                 <span class="btn btn-xs btn-danger updates" style="float: left;margin-left: 2px" data-no="${rvo.no }">수정</span>
                 <form method="post" action="../reply/delete.do" style="float: left;margin-left: 2px">
-                 <input type="hidden" name="type" value="1">
+                 <input type="hidden" name="type" value="2">
                  <input type="hidden" name="cno" value="${vo.no }">
                  <input type="hidden" name="no" value="${rvo.no }">
                  <button class="btn-xs btn-primary">삭제</button>
@@ -380,7 +380,7 @@ $(function(){
             <tr style="display: none" id="u${rvo.no }" class="ups">
 		       <td>
 		        <form method="post" action="../reply/update.do">
-		         <input type="hidden" name="type" value="1">
+		         <input type="hidden" name="type" value="2">
 		         <input type="hidden" name="cno" value="${vo.no}">
 		         <input type="hidden" name="no" value="${rvo.no }">
 		         <textarea rows="5" cols="60" name="msg" style="float: left;">${rvo.msg }</textarea>
@@ -400,7 +400,7 @@ $(function(){
 	      <tr>
 	       <td>
 	        <form method="post" action="../reply/insert.do">
-	         <input type="hidden" name="type" value="1">
+	         <input type="hidden" name="type" value="2">
 	         <input type="hidden" name="cno" value="${vo.no}">
 	         <textarea rows="5" cols="60" name="msg" style="float: left;"></textarea>
 	         <input type="submit" value="댓글쓰기" style="float: left;width: 95px;height: 103px;text-align: center;margin-left: 2px"

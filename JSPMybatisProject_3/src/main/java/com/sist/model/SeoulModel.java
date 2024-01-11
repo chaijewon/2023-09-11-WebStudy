@@ -182,6 +182,30 @@ public class SeoulModel {
 	  request.setAttribute("main_jsp", "../seoul/location_detail.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("seoul/nature_detail.do")
+  public String nature_detail(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  // 100-794 서울특별시 중구 남대문로 39, 한국은행건물 (남대문로3가)
+	  // 서울특별시 중구 남대문로 39, 한국은행건물 (남대문로3가)
+	  String no=request.getParameter("no");
+	  SeoulVO vo=SeoulDAO.seoulNatureDetailData(Integer.parseInt(no));
+	  request.setAttribute("vo", vo);
+	  String addr=vo.getAddress().substring(8);
+	  String addr1=addr.substring(addr.indexOf(" "));
+	  String addr2=addr1.trim().substring(0,addr1.trim().indexOf(" "));
+	  System.out.println(addr2.trim());
+	  List<FoodVO> list=SeoulDAO.seoulFoodData(addr2);
+	  request.setAttribute("list", list);
+	  request.setAttribute("addr", addr2);
+	  // 댓글 전송 
+	  ReplyDAO dao=ReplyDAO.newInstance();
+	  List<ReplyVO> rList=dao.replyListData(2, Integer.parseInt(no));
+	  request.setAttribute("rList", rList);
+	  request.setAttribute("rcount", rList.size());
+	  request.setAttribute("main_jsp", "../seoul/nature_detail.jsp");
+	  return "../main/main.jsp";
+  }
   // 브라우저(클라이언트) => 전송 => 서버
   // => 주소입력창 
   
